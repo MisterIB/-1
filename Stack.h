@@ -38,7 +38,7 @@ public:
 	}
 
 	T pop() {
-		if (is_empty()) return NULL;
+		if (is_empty()) throw std::runtime_error("Stack is empty");
 		Node<T>* temp = head;
 		head = head->next;
 		head->prev = nullptr;
