@@ -75,55 +75,62 @@ void writeToFileTree(const string& nameFile, CompleteBinaryTree<string>& myTree)
     dataFile.close();
 }
 
-void performingAnActionFrwdList(const Data& data, ForwardList<string>& myFrwdList) {//Проверка на не ту команду
+void performingAnActionFrwdList(const Data& data, ForwardList<string>& myFrwdList) {
     if (data.command == "LPUSH_BACK") myFrwdList.push_back(data.value);
-    if (data.command == "LPUSH_FRONT") myFrwdList.push_front(data.value);
-    if (data.command == "LDEL_BACK") myFrwdList.remove_back();
-    if (data.command == "LDEL_FRONT") myFrwdList.remove_front();
-    if (data.command == "LGET") cout << myFrwdList.find(data.value);
-    if (data.command == "PRINT") myFrwdList.print();
+    else if (data.command == "LPUSH_FRONT") myFrwdList.push_front(data.value);
+    else if (data.command == "LDEL_BACK") myFrwdList.remove_back();
+    else if (data.command == "LDEL_FRONT") myFrwdList.remove_front();
+    else if (data.command == "LGET") cout << myFrwdList.find(data.value);
+    else if (data.command == "PRINT") myFrwdList.print();
+    else throw runtime_error("Incorrect input command");
 }
 
 void performingAnActionList(const Data& data, List<string>& myList) {
     if (data.command == "LPUSH_BACK") myList.push_back(data.value);
-    if (data.command == "LPUSH_FRONT") myList.push_front(data.value);
-    if (data.command == "LDEL_BACK") myList.remove_back();
-    if (data.command == "LDEL_FRONT") myList.remove_front();
-    if (data.command == "LGET") cout << myList.find(data.value);
-    if (data.command == "PRINT") myList.print();
+    else if (data.command == "LPUSH_FRONT") myList.push_front(data.value);
+    else if (data.command == "LDEL_BACK") myList.remove_back();
+    else if (data.command == "LDEL_FRONT") myList.remove_front();
+    else if (data.command == "LGET") cout << myList.find(data.value);
+    else if (data.command == "PRINT") myList.print();
+    else throw runtime_error("Incorrect input command");
 }
 
 void performingAnActionStack(const Data& data, Stack<string>& myStack) {
     if (data.command == "SPUSH") myStack.push(data.value);
-    if (data.command == "SPOP") cout << myStack.pop();
-    if (data.command == "PRINT") myStack.print();
+    else if (data.command == "SPOP") cout << myStack.pop();
+    else if (data.command == "PRINT") myStack.print();
+    else throw runtime_error("Incorrect input command");
 }
 
 void performingAnActionQueue(const Data& data, Queue<string>& myQueue) {
     if (data.command == "QPUSH") myQueue.push(data.value);
-    if (data.command == "QPOP") cout << myQueue.pop();
-    if (data.command == "PRINT") myQueue.print();
+    else if (data.command == "QPOP") cout << myQueue.pop();
+    else if (data.command == "PRINT") myQueue.print();
+    else throw runtime_error("Incorrect input command");
 }
 
 void performingAnActionArray(const Data& data, Array<string>& myArray) {
     if (data.command == "MPUSH") myArray.push_back(data.value);
-    if (data.command == "MDEL") myArray.erase(stoi(data.value));
-    if (data.command == "MGET") cout << myArray[stoi(data.value)];
-    if (data.command == "PRINT") myArray.print();
+    else if (data.command == "MDEL") myArray.erase(stoi(data.value));
+    else if (data.command == "MGET") cout << myArray[stoi(data.value)];
+    else if (data.command == "PRINT") myArray.print();
+    else throw runtime_error("Incorrect input command");
 }
 
 void performingAnActionHash(const Data& data, Hash<string>& myHash) {
     if (data.command == "HSET") myHash.HSET(data.key, data.value);
-    if (data.command == "HDEL") myHash.HDEL(data.value);
-    if (data.command == "PRINT") myHash.print();
-    if (data.command == "HGET") cout << myHash.HGET(data.value);
+    else if (data.command == "HDEL") myHash.HDEL(data.value);
+    else if (data.command == "PRINT") myHash.print();
+    else if (data.command == "HGET") cout << myHash.HGET(data.value);
+    else throw runtime_error("Incorrect input command");
 }
 
 void performingAnActionTree(const Data& data, CompleteBinaryTree<string>& myTree) {
     if (data.command == "TINSERT") myTree.TINSERT(data.value);
-    if (data.command == "TDEL") myTree.TDEL();
-    if (data.command == "TCHEK") cout << "true";
-    if (data.command == "PRINT") myTree.print();
+    else if (data.command == "TDEL") myTree.TDEL();
+    else if (data.command == "TCHEK") cout << "true";
+    else if (data.command == "PRINT") myTree.print();
+    else throw runtime_error("Incorrect input command");
 }
 
 void readFromFileInFrwdList(const string& nameFile, const Data& data) {
