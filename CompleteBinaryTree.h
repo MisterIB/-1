@@ -40,7 +40,7 @@ private:
 		}
 
 		void pop() {
-			if (is_empty()) return;
+			if (is_empty()) throw std::runtime_error("Tree is empty");
 			Node<U>* prevNode = NULL;
 			Node<U>* curNode = head;
 			while (curNode->next) {
