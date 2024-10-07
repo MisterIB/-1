@@ -33,7 +33,7 @@ public:
 	}
 
 	void push(int32_t index, T value) {
-		if (is_empty()) return;
+		if (is_empty()) throw std::runtime_error("List is empty");
 		Node<T>* curNode = head;
 		Node<T>* prevNode = NULL;
 		for (int32_t i = 1; curNode; i++) {
@@ -82,7 +82,7 @@ public:
 	}
 
 	void remove_front() {
-		if (is_empty()) return;
+		if (is_empty()) throw std::runtime_error("List is empty");
 		Node<T>* tempNode = head;
 		head = head->next;
 		head->prev = nullptr;
@@ -90,7 +90,7 @@ public:
 	}
 
 	void remove_back() {
-		if (is_empty()) return;
+		if (is_empty()) throw std::runtime_error("List is empty");
 		Node<T>* tempNode = tail;
 		tail = tail->prev;
 		tail->next = nullptr;
@@ -98,7 +98,7 @@ public:
 	}
 
 	void print() {
-		if (is_empty()) return;
+		if (is_empty()) throw std::runtime_error("List is empty");
 		Node<T>* printNode = head;
 		while (printNode) {
 			std::cout << printNode->value << " ";
@@ -108,7 +108,7 @@ public:
 	}
 
 	void printInFile(std::ofstream& file) {
-		if (is_empty()) return;
+		if (is_empty()) throw std::runtime_error("List is empty");
 		Node<T>* printNode = head;
 		while (printNode) {
 			file << printNode->value << " ";
