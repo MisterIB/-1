@@ -45,7 +45,7 @@ public:
 	}
 
 	void remove(std::string key) {
-		if (is_empty()) return;
+		if (is_empty()) throw std::runtime_error("Hash table is empty");
 		Node<T>* prevNode = NULL;
 		Node<T>* curNode = head;
 		while (curNode) {
@@ -69,7 +69,7 @@ public:
 	}
 
 	void print() {
-		if (is_empty()) return;
+		if (is_empty()) throw std::runtime_error("Hash table is empty");
 		Node<T>* printNode = head;
 		while (printNode) {
 			std::cout << "<" << printNode->key << ", " << printNode->value << "> ";
@@ -79,7 +79,7 @@ public:
 	}
 
 	void printInFile(std::ofstream& file) {
-		if (is_empty()) return;
+		if (is_empty()) throw std::runtime_error("Hash table is empty");
 		Node<T>* printNode = head;
 		while (printNode) {
 			file << printNode->key << " " << printNode->value << " ";
