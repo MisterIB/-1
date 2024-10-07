@@ -36,7 +36,7 @@ public:
 	}
 
 	T pop() {
-		if (is_empty()) return NULL;
+		if (is_empty()) throw std::runtime_error("Queue is empty");
 		Node<T>* temp = head;
 		head = head->next;
 		T value = temp->value;
