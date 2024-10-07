@@ -42,7 +42,7 @@ public:
 			arr = temp;
 		}
 		T* tempArray = new T[capacity];
-		if (index > currentSize) return;
+		if (index > currentSize) throw std::runtime_error("going outside the array");
 		for (int32_t i = 0, j = 0; i < currentSize; i++, j++) {
 			if (i == index) {
 				tempArray[i] = value;
@@ -59,7 +59,7 @@ public:
 	}
 
 	void erase(int32_t index) {
-		if (index >= currentSize) return;
+		if (index >= currentSize) throw std::runtime_error("going outside the array");
 		T* temp = new T[capacity];
 		for (int32_t i = 0, j = 0; i < currentSize; i++, j++) {
 			if (i == index) {
