@@ -68,7 +68,7 @@ private:
 				if (tempNode->value == value) return value;
 				tempNode = tempNode->next;
 			}
-			return NULL;
+			throw std::runtime_error("The element is missing in the tree");
 		}
 
 		void print() {
