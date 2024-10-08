@@ -110,9 +110,12 @@ void performingAnActionQueue(const Data& data, Queue<string>& myQueue) {
 }
 
 void performingAnActionArray(const Data& data, Array<string>& myArray) {
-    if (data.command == "MPUSH") myArray.push_back(data.value);
+    if (data.command == "MPUSH_BACK") myArray.push_back(data.value);
+    else if (data.command == "MPUSH") myArray.insert(stoi(data.key), data.value);
     else if (data.command == "MDEL") myArray.erase(stoi(data.value));
     else if (data.command == "MGET") cout << myArray[stoi(data.value)];
+    else if (data.command == "MREPLACE") myArray.replace(stoi(data.key), data.value);
+    else if (data.command == "SIZE") cout << myArray.size();
     else if (data.command == "PRINT") myArray.print();
     else throw runtime_error("Incorrect input command");
 }
@@ -129,6 +132,7 @@ void performingAnActionTree(const Data& data, CompleteBinaryTree<string>& myTree
     if (data.command == "TINSERT") myTree.TINSERT(data.value);
     else if (data.command == "TDEL") myTree.TDEL();
     else if (data.command == "TCHEK") cout << "true";
+    else if (data.command == "TGET") cout << myTree.TGET(data.value);
     else if (data.command == "PRINT") myTree.print();
     else throw runtime_error("Incorrect input command");
 }
