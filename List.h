@@ -29,7 +29,7 @@ public:
 		Node<T>* tempNode = head;
 		while (tempNode and tempNode->value != value) tempNode = tempNode->next;
 		if (tempNode and tempNode->value == value) return tempNode;
-		else return nullptr;
+		else throw std::runtime_error("The item is missing from the list");
 	}
 
 	void push(int32_t index, T value) {
