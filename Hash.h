@@ -30,7 +30,7 @@ public:
 		Node<T>* tempNode = head;
 		while (tempNode and tempNode->key != key) tempNode = tempNode->next;
 		if (tempNode and tempNode->key == key) return tempNode->value;
-		return NULL;
+		throw std::runtime_error("The element is missing in the hash table");
 	}
 
 	void push_back(std::string key, T value) {
