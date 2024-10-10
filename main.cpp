@@ -131,7 +131,10 @@ void performingAnActionHash(const Data& data, Hash<string>& myHash) {
 void performingAnActionTree(const Data& data, CompleteBinaryTree<string>& myTree) {
     if (data.command == "TINSERT") myTree.TINSERT(data.value);
     else if (data.command == "TDEL") myTree.TDEL();
-    else if (data.command == "TCHEK") cout << "true";
+    else if (data.command == "TCHEK") {
+        if (myTree.TCHEK()) cout << "true";
+        else cout << "false";
+        }
     else if (data.command == "TGET") cout << myTree.TGET(data.value);
     else if (data.command == "PRINT") myTree.print();
     else throw runtime_error("Incorrect input command");
