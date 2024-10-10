@@ -38,7 +38,7 @@ public:
 	T pop() {
 		if (is_empty()) throw std::runtime_error("Queue is empty");
 		Node<T>* temp = head;
-		head = head->next;
+		if (head->next != nullptr) head = head->next;
 		T value = temp->value;
 		delete temp;
 		return value;
