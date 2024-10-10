@@ -34,6 +34,12 @@ public:
 	}
 
 	void push_back(std::string key, T value) {
+		Node<T>* tempNode = head;
+		while (tempNode and tempNode->key != key) tempNode = tempNode->next;
+		if (tempNode and tempNode->key == key) {
+			tempNode->value = value;
+			return;
+		}
 		Node<T>* newNode = new Node<T>(key, value);
 		if (is_empty()) {
 			head = newNode;
