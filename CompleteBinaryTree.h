@@ -14,12 +14,18 @@ private:
 		struct Node {
 			D value;
 			Node<D>* next;
+			Node<D>* prev;
+			Node<D>* left;
+			Node<D>* right;
 
-			Node(D value) : value(value), next(nullptr) {}
+			Node(D value) : value(value), next(nullptr), left(nullptr), right(nullptr) {}
 		};
 
 		Node<U>* head;
 		Node<U>* tail;
+		int32_t currentSize = 0;
+		int32_t LeftOrRight = 0;
+		int32_t depth = 1;
 
 	public:
 		CBTList() : head(nullptr), tail(nullptr) {}
@@ -36,20 +42,24 @@ private:
 				return;
 			}
 			tail->next = newNode;
+			newNode->prev = tail;
 			tail = newNode;
+			currentSize++;
+			depth = 1 + floor(log2(currentSize));
+			Node<U>* tempNode = tail;
+			for (int32_t i = 0; i < currentSize - depth; i++){
+				tempNode = tempNode->prev;
+			}
+			if (LeftOrRight == 0) tempNode->left = newNode;
+			if (LeftOrRight == 1) tempNode->right = newNode;
 		}
 
 		void pop() {
 			if (is_empty()) throw std::runtime_error("Tree is empty");
-			Node<U>* prevNode = NULL;
-			Node<U>* curNode = head;
-			while (curNode->next) {
-				prevNode = curNode;
-				curNode = curNode->next;
-			}
-			if (prevNode) prevNode->next = nullptr;
-			tail = prevNode;
-			delete curNode;
+			Node<T>* tempNode = tail;
+			tail = tail->prev;
+			tail->next = nullptr;
+			delete tempNode;
 		}
 
 		int32_t size() {
@@ -69,6 +79,17 @@ private:
 				tempNode = tempNode->next;
 			}
 			throw std::runtime_error("The element is missing in the tree");
+		}
+
+		bool chek() {
+			Node<U>* tempNode = head;
+			depth = floor(log2(currentSize));
+			int32_t sizeCurrentDepth = pow(2, depth);
+			for (int32_t i = 0; i < pow(2, depth - 1); i++) tempNode = tempNode->next;
+			for (int32_t i = 0; i < sizeCurrentDepth; i++) {
+				if (tempNode-> left == nullptr and tempNode->right != nullptr) return false;
+			}
+			return true;
 		}
 
 		void print() {
@@ -118,6 +139,10 @@ public:
 
 	T TGET(T value) {
 		return BinaryTree.find(value);
+	}
+
+	bool TCHEK(){
+		return BinaryTree.chek();
 	}
 
 	void print() {
