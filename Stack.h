@@ -40,7 +40,7 @@ public:
 	T pop() {
 		if (is_empty()) throw std::runtime_error("Stack is empty");
 		Node<T>* temp = head;
-		head = head->next;
+		if (head->next != nullptr) head = head->next;
 		head->prev = nullptr;
 		T value = temp->value;
 		delete temp;
@@ -67,6 +67,7 @@ public:
 	}
 
 	void printInFile(std::ofstream& file) {
+		if (is_empty()) return;
 		Node<T>* tempNode = tail;
 		while (tempNode) {
 			file << tempNode->value << " ";
