@@ -119,7 +119,3 @@ public:
 	}
 
 };
-		file << std::endl;
-	}
-
-};
